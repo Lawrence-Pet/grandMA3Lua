@@ -19,6 +19,20 @@ return function()
         if MyFixtures.name == "Fixtures" then
             Printf("=============== PRINTING ALL TOP LEVEL FIX IN STAGE 1 ===============")
             childs = MyFixtures:Children()
+            table.sort(childs, function(a, b)
+                local a_is_string = type(a.fid) == "string"
+                local b_is_string = type(b.fid) == "string"
+            
+                if a_is_string and not b_is_string then
+                    return true  -- Strings come first
+                elseif not a_is_string and b_is_string then
+                    return false -- Numbers come after strings
+                elseif not a_is_string and not b_is_string then
+                    return a.fid < b.fid  -- Sort numbers in ascending order
+                else
+                    return a.fid < b.fid  -- Sort strings alphabetically if both are strings
+                end
+            end)
             for i = 1, #childs do
                 if childs[i].fid ~= "None" then
                     -- Text is printed for each child.
