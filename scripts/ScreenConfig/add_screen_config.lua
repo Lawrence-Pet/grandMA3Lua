@@ -19,7 +19,7 @@ local function AddScreenConfig(display, name)
   		autoCloseOnInput = true
   		})
   		
-  	-- This value is 2 since "please" or "enter" is 0
+  		
   	if resultTable.result == 2 then
   		return false
   	
@@ -54,7 +54,7 @@ local function AddScreenConfig(display, name)
 	  -- Store Macro
 	  Cmd('Store Macro \"'.. name ..'\" /overwrite')
 	  Cmd('Insert Macro \"' .. name .. '\".' .. 1)
-	  Cmd('Set Macro \"' .. name .. '\".' .. 1 .. ' Property "Command" "ScreenConfiguration '.. name ..'"')
+	  Cmd('Set Macro \"' .. name .. '\".' .. 1 .. ' Property "Command" "ScreenConfiguration \''.. name ..'\'')
 	  Cmd('Assign Appearance "ScreenConfig Macro" at Macro \"' .. name ..'\"')
 
   	local msg = 'Added ScreenConfig "' .. name .. '"'
