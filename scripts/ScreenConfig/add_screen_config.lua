@@ -42,7 +42,16 @@ local function AddScreenConfig(display, name)
   	
   else
   	Echo("Adding New ScreenConfig")
-  	Cmd('Store ScreenConfig \"' ..name..'\"')
+  	--Store Screen Config
+	Cmd('Store ScreenConfig \"' ..name..'\"')
+	--Store Macro
+	Cmd('Store Macro \"'.. name ..'\" /overwrite')
+	Cmd('Insert Macro ' .. name .. '.' .. 1)
+	Cmd('Set Macro ' .. name .. '.' .. 1 .. ' Property "Command" "ScreenConfiguration '.. name ..'"')
+
+
+
+	-- message
   	local msg = 'Added ScreenConfig "' .. name .. '"'
   	MessageBox({
   		title = "Peter Plugin ScreenConfChange",
